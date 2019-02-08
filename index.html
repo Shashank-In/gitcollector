@@ -24,12 +24,12 @@ function httpGet()
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
     var gits = xmlHttp.responseText;
-    //document.getElementById("data").innerHTML = gits;
-    const reg = /https:\/\/github\.com[^\"]*git/gm;
-    let m;
-    m = gits.match(reg);
+    var reg = /https:\/\/github\.com[^\"]*git/gm;
+    var m = gits.match(reg);
+    k = m.join("<br>")
 
-    document.getElementById("data").innerHTML = m;
+
+    document.getElementById("data").innerHTML = k;
 }
 </script>
 
