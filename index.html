@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>GitCollector</h1>
+
+<p>Git collector is a tool to collect all git repository's of a user or an organisation</p>
+
+<input type="text" id="user" ="user name" value=""><br>
+<button onclick="httpGet()">SUBMIT</button>
+
+<p id="data"></p>
+
+
+
+<script>
+
+function httpGet()
+{
+	var x = document.getElementById("user").value;
+	theUrl = "https://api.github.com/users/" + x +"/repos?per_page=1000"
+    
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    var gits = xmlHttp.responseText;
+    //document.getElementById("data").innerHTML = gits;
+    const reg = /https:\/\/github\.com[^\"]*git/gm;
+    let m;
+    m = gits.match(reg);
+
+    document.getElementById("data").innerHTML = m;
+}
+</script>
+
+</body>
+</html>
